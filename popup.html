@@ -9,15 +9,36 @@
         body {
             background-color: #1B1B1B;
             color: white;
-            width: 425px;
+            width: 432px;
             height: 400px;
         }
         .sidebar {
             background-color: #3C3C3C;
             color: rgb(243, 240, 235);
         }
+        .loot-column {
+            width: 75%;
+        }
+        .scrollable {
+            direction: rtl;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .scrollable > * {
+            direction: ltr;
+            padding-left: 10px;
+        }
+        .item {
+            margin-bottom: 10px;
+        }
+        .item-details {
+            display: none;
+        }
+        .item-image {
+            width: 35px;
+        }
         ::-webkit-scrollbar {
-        width: 10px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
         background-color: #313338; 
@@ -36,24 +57,32 @@
         .w3-table th:first-child {
             padding-left: 8px;
         }
+        .w3-bar-item {
+            padding-right: 0px !important;
+        }
     </style>
     <title>Document</title>
     <script src="popup.js"></script>
 </head>
 <body>
     <nav class="w3-sidebar w3-bar-block sidebar" style="width:140px">
-        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
-            Bar Raids <i class="fa fa-caret-down"></i>
-        </button></h5>
-        <div id="" class="w3-hide w3-card">
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Bar Raids</button></h5>
+        <div class="w3-hide w3-card">
             <button class="w3-bar-item w3-button raid-button">PBHL</button>
             <button class="w3-bar-item w3-button raid-button">GOHL</button>
             <button class="w3-bar-item w3-button raid-button">Akasha</button>
         </div>
-        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
-            M3s <i class="fa fa-caret-down"></i>
-        </button></h5>
-        <div id="" class="w3-hide w3-card">
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> 6 Dragons</button></h5>
+        <div class="w3-hide w3-card">
+            <button class="w3-bar-item w3-button raid-button">Wilnas</button>
+            <button class="w3-bar-item w3-button raid-button">Wamdus</button>
+            <button class="w3-bar-item w3-button raid-button">Galleon</button>
+            <button class="w3-bar-item w3-button raid-button">Ewiyar</button>
+            <button class="w3-bar-item w3-button raid-button">Lu Woh</button>
+            <button class="w3-bar-item w3-button raid-button">Fediel</button>
+        </div>
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> M3s</button></h5>
+        <div class="w3-hide w3-card">
             <button class="w3-bar-item w3-button raid-button">M3 Tiamat</button>
             <button class="w3-bar-item w3-button raid-button">M3 Colossus</button>
             <button class="w3-bar-item w3-button raid-button" disabled>M3 Yggdrasil</button>
@@ -61,10 +90,8 @@
             <button class="w3-bar-item w3-button raid-button">M3 Luminiera</button>
             <button class="w3-bar-item w3-button raid-button">M3 Celeste</button>
         </div>
-        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
-            Revans <i class="fa fa-caret-down"></i>
-        </button></h5>
-        <div id="" class="w3-hide w3-card">
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Revans</button></h5>
+        <div class="w3-hide w3-card">
             <button class="w3-bar-item w3-button raid-button">Mugen</button>
             <button class="w3-bar-item w3-button raid-button">Diaspora</button>
             <button class="w3-bar-item w3-button raid-button">Siegfried</button>
@@ -76,7 +103,7 @@
     <div style="margin-left:140px;">
         <div id="raid-info" class="w3-container">
             <h2 id="raid-title">Tiamat Aura Omega</h2>
-            <table id="header-table" class="w3-table w3-bordered" style="empty-cells: hide; border-collapse: separate;"></table>
+            <!--<table id="header-table" class="w3-table w3-bordered" style="empty-cells: hide; border-collapse: separate;"></table>-->
         </div>
     </div>
 </body>

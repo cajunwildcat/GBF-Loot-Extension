@@ -53,13 +53,25 @@ const injectMainScript = () => {
         //#endregion
         //#region bar raids
             //pbhl - always drops horns of bahamut or primeval horn
-    
+        else if (checkChest([goldChest, redChest], ["10_79", "10_59"])) {
+            message.type = "BAR";
+            message.raid = "PHBL";
+        }
             //gohl - always drops verdant azurite
-    
+        else if (checkChest([goldChest, redChest], ["10_546"])) {
+            message.type = "BAR";
+            message.raid = "GOHL";
+        }
             //akasha - always drops hollow key
-    
+        else if (checkChest([goldChest, redChest], ["10_534"])) {
+            message.type = "BAR";
+            message.raid = "Akasha";
+        }
             //ubahl - *almost* always drops an ultima unit
-    
+        else if (checkChest([goldChest, redChest], ["10_138"])) {
+            message.type = "UBAHL";
+            message.raid = "Akasha";
+        }
         //#endregion
         //#region revans - *should* always drop their specific material
             //mugen
@@ -119,8 +131,12 @@ const injectMainScript = () => {
         //#endregion
         //enead - cannot be determined
         //the world- *presumably* always drops a world idean?
+        else if (checkChest([goldChest, redChest], ["10_25017"])) {
+            message.type = "WORLD";
+            message.raid = "The World";
+        }
 
-        if (window.Game.view.resultJsonData.retry_quest_info !== undefined) {
+        if (window.Game.view.resultJsonData.retry_quest_info !== null) {
             message.type = "SOLO";
             message.raid = window.Game.view.resultJsonData.retry_quest_info.quest_id;
         }
