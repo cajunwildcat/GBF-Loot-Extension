@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "GBF Loot Extension",
+    "version": "0.78",
+    "description": "A loot tracker for GBF.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs",
+        "scripting",
+        "unlimitedStorage"
+    ],
+    "host_permissions": [
+        "*://*.granbluefantasy.jp/#result/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*.granbluefantasy.jp/*"],
+            "js": ["contentScript.js"]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #1B1B1B;
+            color: white;
+            width: 425px;
+            height: 400px;
+        }
+        .sidebar {
+            background-color: #3C3C3C;
+            color: rgb(243, 240, 235);
+        }
+        ::-webkit-scrollbar {
+        width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+        background-color: #313338; 
+        }
+        ::-webkit-scrollbar-thumb {
+        background: #888; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+        background: #BBB; 
+        }
+
+        th {
+            border-color: white;
+            border: 1px solid white;
+        }
+        .w3-table th:first-child {
+            padding-left: 8px;
+        }
+    </style>
+    <title>Document</title>
+    <script src="popup.js"></script>
+</head>
+<body>
+    <nav class="w3-sidebar w3-bar-block sidebar" style="width:140px">
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
+            Bar Raids <i class="fa fa-caret-down"></i>
+        </button></h5>
+        <div id="" class="w3-hide w3-card">
+            <button class="w3-bar-item w3-button raid-button">PBHL</button>
+            <button class="w3-bar-item w3-button raid-button">GOHL</button>
+            <button class="w3-bar-item w3-button raid-button">Akasha</button>
+        </div>
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
+            M3s <i class="fa fa-caret-down"></i>
+        </button></h5>
+        <div id="" class="w3-hide w3-card">
+            <button class="w3-bar-item w3-button raid-button">M3 Tiamat</button>
+            <button class="w3-bar-item w3-button raid-button">M3 Colossus</button>
+            <button class="w3-bar-item w3-button raid-button" disabled>M3 Yggdrasil</button>
+            <button class="w3-bar-item w3-button raid-button" disabled>M3 Leviathan</button>
+            <button class="w3-bar-item w3-button raid-button">M3 Luminiera</button>
+            <button class="w3-bar-item w3-button raid-button">M3 Celeste</button>
+        </div>
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button">
+            Revans <i class="fa fa-caret-down"></i>
+        </button></h5>
+        <div id="" class="w3-hide w3-card">
+            <button class="w3-bar-item w3-button raid-button">Mugen</button>
+            <button class="w3-bar-item w3-button raid-button">Diaspora</button>
+            <button class="w3-bar-item w3-button raid-button">Siegfried</button>
+            <button class="w3-bar-item w3-button raid-button">Seofon</button>
+            <button class="w3-bar-item w3-button raid-button">Cosmos</button>
+            <button class="w3-bar-item w3-button raid-button">Agastia</button>
+        </div>
+    </nav>
+    <div style="margin-left:140px;">
+        <div id="raid-info" class="w3-container">
+            <h2 id="raid-title">Tiamat Aura Omega</h2>
+            <table id="header-table" class="w3-table w3-bordered" style="empty-cells: hide; border-collapse: separate;"></table>
+        </div>
+    </div>
+</body>
+</html>
