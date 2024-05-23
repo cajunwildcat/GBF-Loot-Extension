@@ -51,7 +51,7 @@ window.addEventListener('message', (event) => {
                     //11 - blue chest
                     //16 - green chest (M3 only)
                     result.kills++;
-                    if (event.data.loot[1].length === undefined) result.goldChests.push(Object.values(event.data.loot[1]).map(item => {
+                    if (event.data.loot[1].length === undefined) result.woodChests.push(Object.values(event.data.loot[1]).map(item => {
                         return {
                             count: item.count,
                             id: item.id,
@@ -59,7 +59,7 @@ window.addEventListener('message', (event) => {
                             type: item.type
                         };
                     }));
-                    if (event.data.loot[2].length === undefined) result.goldChests.push(Object.values(event.data.loot[2]).map(item => {
+                    if (event.data.loot[2].length === undefined) result.silverChests.push(Object.values(event.data.loot[2]).map(item => {
                         return {
                             count: item.count,
                             id: item.id,
@@ -100,7 +100,13 @@ window.addEventListener('message', (event) => {
                         };
                     }));
         
-                    if (event.data.type == "SOLO") chrome.storage.local.set({"SOLO": {[event.data.raid]: result}});
+                    if (event.data.type == "SOLO") {
+                        chrome.storage.local.get("SOLO").then(r=>{
+                            r = r["SOLO"];
+                            r[event.data.raid] = result;
+                            chrome.storage.local.set({"SOLO": r});
+                        })
+                    }
                     else chrome.storage.local.set({[event.data.raid]: result});
                     //console.log(result);
                 });

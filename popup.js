@@ -11,6 +11,22 @@ window.onload = async (e) => {
     const headerTable = document.querySelector("#header-table")
     const raidInfo = document.querySelector("#raid-info");
 
+    await chrome.storage.local.get("SOLO").then(r => {
+        r = r["SOLO"];
+        if (r === undefined) return;
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.innerHTML += `<h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Solo Fights</button></h5>`
+        const soloFights = document.createElement("div");
+        soloFights.className = "w3-hide w3-card";
+        Object.keys(r).forEach(fight => {
+            const navButton = document.createElement("button");
+            navButton.className = "w3-bar-item w3-button raid-button solo-quest";
+            navButton.innerHTML = fight;
+            soloFights.appendChild(navButton);
+        });
+        sidebar.appendChild(soloFights);
+    })
+
     document.querySelectorAll(".raid-category-button").forEach(i => {
         i.onclick = (e) => {
             const div = e.target.parentNode.nextElementSibling;
@@ -37,24 +53,26 @@ window.onload = async (e) => {
             raidTitle.innerHTML = raid;
             const raidData = {};
             raidData[raid] = { kills: 0};   
-            chrome.storage.local.get(raidData, (result) => {
-                result = result[raid];
-                if (result.kills == 0) {
-                    document.querySelectorAll(".loot-column").forEach(c=>c.style.display = "none");
-                    const noLootWarning = document.createElement("h3");
-                    noLootWarning.id = "no-loot-warning";
-                    noLootWarning.innerHTML = "There is not recorded data for this raid";
-                    raidInfo.appendChild(noLootWarning);
-                }
-                else {
-                    displayLoot(result);
-                }
-            });
+            if (e.target.className.includes("solo-quest")) chrome.storage.local.get("SOLO", (result) => buildRaidInfo(result["SOLO"][raid]));
+            else chrome.storage.local.get(raidData, (result) => buildRaidInfo(result[raid]));
         };
         if (i.innerHTML === lastRaid) lastRaid = i;
     });
     lastRaid.dispatchEvent(new Event("click"));
-    
+
+    const buildRaidInfo = (result) => {
+        if (result.kills == 0) {
+            document.querySelectorAll(".loot-column").forEach(c=>c.style.display = "none");
+            const noLootWarning = document.createElement("h3");
+            noLootWarning.id = "no-loot-warning";
+            noLootWarning.innerHTML = "There is not recorded data for this raid";
+            raidInfo.appendChild(noLootWarning);
+        }
+        else {
+            displayLoot(result);
+        }
+    }    
+
     const createCell = (img, value, hover) => {
         const newCell = document.createElement("th");
         newCell.innerHTML = `<img src="${img}"> ${value}`;
@@ -82,9 +100,10 @@ window.onload = async (e) => {
             populateChests("Gold Chest", processLoot(data.goldChests), data.goldChests.length);
         }
         if (data.silverChests) {
+            populateChests("Silver Chest", processLoot(data.silverChests), data.silverChests.length);
         }
-        if (data.greenChests) {
-
+        if (data.woodChests) {
+            populateChests("Wood Chest", processLoot(data.woodChests), data.woodChests.length);
         }
     }
 
