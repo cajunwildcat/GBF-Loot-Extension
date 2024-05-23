@@ -105,7 +105,8 @@ window.onload = async (e) => {
 
     function populateChests(title, loot, drops) {
         const lootColumn = document.createElement("div");
-        lootColumn.innerHTML = `<div class="loot-column"><h3>${title}: ${drops}</h3><div class="scrollable"></div></div>`;
+        lootColumn.className = "loot-column";
+        lootColumn.innerHTML = `<h3>${title}: ${drops}</h3><div class="scrollable"></div>`;
         const container = lootColumn.querySelector(".scrollable");
 
         loot.forEach(item => item.percentage = ((item.count / drops) * 100).toFixed(2));
