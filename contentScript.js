@@ -42,8 +42,13 @@ window.addEventListener('message', (event) => {
                     case "REVAN": defaultValue = standardLoot; break;
                     case "UNKNOWN": console.log("Unknown raid data received."); return;
                 }
-                chrome.storage.local.get({ [event.data.raid]: defaultValue }, (result) => {
-                    result = result[event.data.raid];
+                chrome.storage.local.get({ [event.data.type === "SOLO"? "SOLO" : event.data.raid]: defaultValue }, (result) => {
+                    if (event.data.type === "SOLO") {
+                        result = result["SOLO"];
+                        if (result[event.data.raid]) result = result[event.data.raid];
+                        else result = defaultValue;
+                    }
+                    else result = result[event.data.raid];
                     //3 - wood chests (solo quests only)
                     //3 - silver chests (solo quests only)
                     //3 - gold chests
@@ -101,7 +106,7 @@ window.addEventListener('message', (event) => {
                     }));
         
                     if (event.data.type == "SOLO") {
-                        chrome.storage.local.get("SOLO").then(r=>{
+                        chrome.storage.local.get({"SOLO": {}}).then(r=>{
                             r = r["SOLO"];
                             r[event.data.raid] = result;
                             chrome.storage.local.set({"SOLO": r});
