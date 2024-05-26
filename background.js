@@ -20,7 +20,7 @@ const injectMainScript = () => {
         let blueChest = Object.keys(loot[11]);
         let redChest = Object.keys(loot[4]);
 
-        const message = { command: 'UPDATE_STORAGE', type: "UNKNOWN", raid: "", loot: loot };
+        const message = { command: 'UPDATE_STORAGE', type: "UNKNOWN", raid: "UNKNOWN", loot: loot };
         //#region m3 - always drops immortal fragment
         if (goldChest.includes("10_612")) {
             message.type = "M3";
@@ -55,7 +55,7 @@ const injectMainScript = () => {
             //pbhl - always drops horns of bahamut or primeval horn
         else if (checkChest([goldChest, redChest], ["10_79", "10_59"])) {
             message.type = "BAR";
-            message.raid = "PHBL";
+            message.raid = "PBHL";
         }
             //gohl - always drops verdant azurite
         else if (checkChest([goldChest, redChest], ["10_546"])) {
@@ -69,8 +69,8 @@ const injectMainScript = () => {
         }
             //ubahl - *almost* always drops an ultima unit
         else if (checkChest([goldChest, redChest], ["10_138"])) {
-            message.type = "UBAHL";
-            message.raid = "Akasha";
+            message.type = "BAR";
+            message.raid = "UBAHL";
         }
         //#endregion
         //#region revans - *should* always drop their specific material
