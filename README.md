@@ -22,3 +22,21 @@ The data in `exampleData.json` is taken from M3 Colossus. To import this data in
 
 ## Raw Data
 The data for each fight collected so far can be seen by opening the developer console of the extension popup and typing `chrome.storage.local.get(null).then(r=>console.log(r));`. Data for a specific fight only can be seen by replace `null` with a string of the fight's name as it appears in the extension popup navbar.
+
+## TODO
+- Update fight determination to be based on quest id-session id pairing from summon select screen instead of loot filtering
+ - Tethering needs to happen when joining raid, not necessarily opening summon select screen
+ - Tethering should have a timeout length for if the fight wasn't properly started or results never checked or resolved properly to avoid orphaned data
+ - Add navbar section for normal raids and skippable Impossibles and Enneads
+- Change data storage to store fight data as list of sessions
+ - sessions hold their respective loot arrays with items mapped to reduce size
+ - popup parsing needs to be overhauled to accomodate this
+- Change extension icon based on work
+ - Results page opened but not fully loaded: red background
+ - Results page fully loaded and data finished being added: green background
+ - Any other URL: gray background
+- JSON exporting
+- Renaming for standard fights?
+- Add locally stored version number
+ - Checking locally stored version vs expected allows for handling of updateing data to new formats
+- Clean up code
