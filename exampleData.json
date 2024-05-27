@@ -1,0 +1,1000 @@
+{
+    "blueChests": [
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "2002",
+                "name": "Supreme Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "1040317400",
+                "name": "Colossus Bomber Ira",
+                "type": "weapon"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "2003",
+                "name": "Legendary Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "2002",
+                "name": "Supreme Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ]
+    ],
+    "goldChests": [
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 2,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "2",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "55",
+                "name": "Omega Fragment",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "111",
+                "name": "Fire Urn",
+                "type": "item/article"
+            },
+            {
+                "count": 2,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "101",
+                "name": "Rubeus Centrum",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "101",
+                "name": "Rubeus Centrum",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "101",
+                "name": "Rubeus Centrum",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "111",
+                "name": "Fire Urn",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "47",
+                "name": "Resolute Reactor",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "535",
+                "name": "Genesis Fragment",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "111",
+                "name": "Fire Urn",
+                "type": "item/article"
+            },
+            {
+                "count": 2,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "612",
+                "name": "Immortal Fragment",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "101",
+                "name": "Rubeus Centrum",
+                "type": "item/article"
+            },
+            {
+                "count": 2,
+                "id": "19",
+                "name": "Colossus Omega Anima",
+                "type": "item/article"
+            }
+        ]
+    ],
+    "greenChests": [
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "2002",
+                "name": "Supreme Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "2002",
+                "name": "Supreme Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "2003",
+                "name": "Legendary Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "2003",
+                "name": "Legendary Merit",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ]
+    ],
+    "kills": 27,
+    "redChests": [
+        [
+            {
+                "count": "2",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 2,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": "1",
+                "id": "603",
+                "name": "Ira Omega Anima",
+                "type": "item/article"
+            },
+            {
+                "count": "1",
+                "id": "41",
+                "name": "True Fire Anima",
+                "type": "item/article"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            },
+            {
+                "count": 1,
+                "id": "1",
+                "name": "Weapon Plus Mark",
+                "type": "item/bonusstock"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "1",
+                "name": "Weapon Plus Mark",
+                "type": "item/bonusstock"
+            }
+        ],
+        [
+            {
+                "count": 1,
+                "id": "602",
+                "name": "Ira Anima",
+                "type": "item/article"
+            }
+        ]
+    ],
+    "silverChests": [],
+    "type": "m3",
+    "woodChests": []
+}

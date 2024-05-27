@@ -44,6 +44,7 @@ window.addEventListener('message', (event) => {
                     //4 - mvp/host chests
                     //11 - blue chest
                     //13 - purple chest
+                    //15 - ???
                     //16 - green chest (M3 only)
                     const addLoot = (chestIndex) => {
                         let chest;
