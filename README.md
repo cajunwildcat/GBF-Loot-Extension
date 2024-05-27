@@ -2,6 +2,9 @@
 
 A chrome extension that automatically records the loot you get from raids and quests in Granblue Fantasy.
 
+## Installation
+After cloning, open Chrome and go to the Extensions page. Click `Load unpacked` and select the containing folder.
+
 ## What does what
 
 - `popup.html` and `popup.js` are for handling the extension popup when clicking the extension icon
