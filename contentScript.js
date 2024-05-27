@@ -6,23 +6,22 @@ const itemMap = item => {
         type: item.type
     };
 };
-const defaultLoot = {
-    "type": data.type,
-    "kills": 0,
-    "woodChests": [],
-    "silverChests": [],
-    "goldChests": [],
-    "redChests": [],
-    "blueChests": [],
-    "purpleChests": [],
-    "greenChests": []
-};
 
 // contentScript.js
 window.addEventListener('message', (event) => {
     if (event.source !== window) return;
     const data = event.data;
-    
+    const defaultLoot = {
+        "type": data.type,
+        "kills": 0,
+        "woodChests": [],
+        "silverChests": [],
+        "goldChests": [],
+        "redChests": [],
+        "blueChests": [],
+        "purpleChests": [],
+        "greenChests": []
+    };
     
     if (data.command) {
         switch (data.command) {
@@ -54,7 +53,7 @@ window.addEventListener('message', (event) => {
                             case 3: chest = result.goldChests; break;
                             case 4: chest = result.redChests; break;
                             case 11: chest = result.blueChests; break;
-                            case 13: chest = result.purpleCChests; break;
+                            case 13: chest = result.purpleChests; break;
                             case 16: chest = result.greenChests; break;
                         }
                         if (data.loot[chestIndex].length === undefined) chest.push(Object.values(data.loot[chestIndex]).map(itemMap));
@@ -66,6 +65,7 @@ window.addEventListener('message', (event) => {
                     if (data.type == "SOLO") {
                         chrome.storage.local.get({"SOLO": {}}).then(r=>{
                             r = r["SOLO"];
+                            result.id = data.raid;
                             r[data.raid] = result;
                             chrome.storage.local.set({"SOLO": r});
                         })

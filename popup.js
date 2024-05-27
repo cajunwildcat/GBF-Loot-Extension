@@ -15,7 +15,7 @@ window.onload = async (e) => {
 
     await chrome.storage.local.get("SOLO").then(r => {
         r = r["SOLO"];
-        if (r === undefined) return;
+        if (r === undefined || Object.keys(r).length === 0) return;
         const sidebar = document.querySelector(".sidebar");
         sidebar.innerHTML += `<h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Solo Fights</button></h5>`
         const soloFights = document.createElement("div");
@@ -50,9 +50,6 @@ window.onload = async (e) => {
         if (!i.className.includes("solo-quest")) i.id = i.innerHTML;
         const raid = i.id;
         i.onclick = (e) => {
-            raidInfo.querySelector("#no-loot-warning")?.remove();
-            document.querySelectorAll(".loot-column").forEach(i=>i.remove());
-
             chrome.storage.sync.set({"lastTab": raid});
             raidTitle.innerHTML = i.innerHTML;
             const raidData = {};
@@ -97,6 +94,9 @@ window.onload = async (e) => {
 
 
     const buildRaidInfo = (result) => {
+        raidInfo.querySelector("#no-loot-warning")?.remove();
+        document.querySelectorAll(".loot-column").forEach(i=>i.remove());
+        raidInfo.querySelector("span")?.remove();
         if (result.kills == 0) {
             document.querySelectorAll(".loot-column").forEach(c=>c.style.display = "none");
             const noLootWarning = document.createElement("h3");
@@ -115,20 +115,25 @@ window.onload = async (e) => {
             `;
             raidInfo.appendChild(buttonSpan);
             document.querySelector("#download-button").onclick = download;
+            document.querySelector("#clear-button").onclick = () => {
+                const raid = getCurrentRaid();
+                console.log(raid);
+                if (raid.type !== "SOLO") {
+                    chrome.storage.local.remove(raidTitle.innerHTML);
+                    buildRaidInfo({kills: 0});
+                }
+                else {
+                    chrome.storage.local.get("SOLO").then(async r => {
+                        r = r["SOLO"];
+                        delete r[raid.id];
+                        chrome.storage.local.set({"SOLO": r});
+                        console.log(lastRaid.id, raid.id);
+                        await chrome.storage.sync.set({"lastTab": "PBHL"});
+                        window.location.reload();
+                    });
+                }
+            };
         }
-    }    
-
-    const createCell = (img, value, hover) => {
-        const newCell = document.createElement("th");
-        newCell.innerHTML = `<img src="${img}"> ${value}`;
-        newCell.title = hover;
-        return newCell;
-    }
-    
-    const addTableRow = (cells) => {
-        const newRow = document.createElement("tr");
-        cells.forEach(c=>newRow.appendChild(c));
-        headerTable.appendChild(newRow);
     }
 
     function displayLoot(data) {
