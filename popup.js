@@ -117,7 +117,6 @@ window.onload = async (e) => {
             document.querySelector("#download-button").onclick = download;
             document.querySelector("#clear-button").onclick = () => {
                 const raid = getCurrentRaid();
-                console.log(raid);
                 if (raid.type !== "SOLO") {
                     chrome.storage.local.remove(raidTitle.innerHTML);
                     buildRaidInfo({kills: 0});
@@ -127,7 +126,6 @@ window.onload = async (e) => {
                         r = r["SOLO"];
                         delete r[raid.id];
                         chrome.storage.local.set({"SOLO": r});
-                        console.log(lastRaid.id, raid.id);
                         await chrome.storage.sync.set({"lastTab": "PBHL"});
                         window.location.reload();
                     });
