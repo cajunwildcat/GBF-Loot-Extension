@@ -107,7 +107,7 @@ window.onload = async (e) => {
         else {
             currentRaid = result;
             displayLoot(result);
-
+ 
             const buttonSpan = document.createElement("span");
             buttonSpan.innerHTML = `
             <button id="download-button" class="w3-button w3-center">Download</button>
