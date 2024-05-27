@@ -10,8 +10,9 @@ let currentRaid = {};
 const getCurrentRaid = () => currentRaid;
 window.onload = async (e) => {
     const raidTitle = document.querySelector("#raid-title");
-    const headerTable = document.querySelector("#header-table")
     const raidInfo = document.querySelector("#raid-info");
+    const topSpan1 = document.querySelector("#top-span1");
+    const topSpan2 = document.querySelector("#top-span2");
 
     await chrome.storage.local.get("SOLO").then(r => {
         r = r["SOLO"];
@@ -95,8 +96,12 @@ window.onload = async (e) => {
 
     const buildRaidInfo = (result) => {
         raidInfo.querySelector("#no-loot-warning")?.remove();
+        raidInfo.querySelector("#button-span")?.remove();
+        raidInfo.querySelector("#top-span1").innerHTML = "";
+        raidInfo.querySelector("#top-span2").innerHTML = "";
+
         document.querySelectorAll(".loot-column").forEach(i=>i.remove());
-        raidInfo.querySelector("span")?.remove();
+
         if (result.kills == 0) {
             document.querySelectorAll(".loot-column").forEach(c=>c.style.display = "none");
             const noLootWarning = document.createElement("h3");
@@ -107,8 +112,9 @@ window.onload = async (e) => {
         else {
             currentRaid = result;
             displayLoot(result);
- 
+
             const buttonSpan = document.createElement("span");
+            buttonSpan.id = "button-span";
             buttonSpan.innerHTML = `
             <button id="download-button" class="w3-button w3-center">Download</button>
             <button id="clear-button" class="w3-button w3-center">Clear Data</button>
@@ -136,22 +142,25 @@ window.onload = async (e) => {
 
     function displayLoot(data) {
         if (data.blueChests && data.blueChests.length > 0) {
-            populateChests("Blue Chest", processLoot(data.blueChests), data.blueChests.length);
+            populateChests("Blue Chests", processLoot(data.blueChests), data.blueChests.length);
         }
         if (data.greenChests && data.greenChests.length > 0) {
-            populateChests("Green Chest", processLoot(data.greenChests), data.greenChests.length);
+            populateChests("Green Chests", processLoot(data.greenChests), data.greenChests.length);
+        }
+        if (data.purpleChests && data.purpleChests.length > 0) {
+            populateChests("Purple Chests", processLoot(data.purpleChests), data.purpleChests.length);
         }
         if (data.redChests && data.redChests.length > 0) {
-            populateChests("Red Chest", processLoot(data.redChests), data.redChests.length);
+            populateChests("Red Chests", processLoot(data.redChests), data.redChests.length);
         }
         if (data.goldChests && data.goldChests.length > 0) {
-            populateChests("Gold Chest", processLoot(data.goldChests), data.goldChests.length);
+            populateChests("Gold Chests", processLoot(data.goldChests), data.goldChests.length);
         }
         if (data.silverChests && data.silverChests.length > 0) {
-            populateChests("Silver Chest", processLoot(data.silverChests), data.silverChests.length);
+            populateChests("Silver Chests", processLoot(data.silverChests), data.silverChests.length);
         }
         if (data.woodChests && data.woodChests.length > 0) {
-            populateChests("Wood Chest", processLoot(data.woodChests), data.woodChests.length);
+            populateChests("Wood Chests", processLoot(data.woodChests), data.woodChests.length);
         }
     }
 
@@ -165,6 +174,30 @@ window.onload = async (e) => {
                 lootMap.get(item.id).count++;
                 if (!lootMap.get(item.id).drops[item.count]) lootMap.get(item.id).drops[item.count] = 0;
                 lootMap.get(item.id).drops[item.count]++;
+                if (getCurrentRaid().type = "m3") {
+                    if (item.type == "weapon") {
+                        let weapon = topSpan1.querySelector(`#i-${item.id}`);
+                        if (!weapon) {
+                            weapon = document.createElement("span");
+                            weapon.id = `i-${item.id}`;
+                            weapon.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
+                            topSpan1.appendChild(weapon);
+                        }
+                        let count = parseInt(weapon.innerHTML.substring(weapon.innerHTML.lastIndexOf(":")+1));
+                        weapon.innerHTML = weapon.innerHTML.replace(`:${count}`, `:${count+1}`);
+                    }
+                    else if (item.id >= 600 && item.id <= 611) {
+                        let anima = topSpan2.querySelector(`#i-${item.id}`);
+                        if (!anima) {
+                            anima = document.createElement("span");
+                            anima.id = `i-${item.id}`;
+                            anima.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
+                            topSpan2.appendChild(anima);
+                        }
+                        let count = parseInt(anima.innerHTML.substring(anima.innerHTML.lastIndexOf(":")+1));
+                        anima.innerHTML = anima.innerHTML.replace(`:${count}`, `:${count+1}`);
+                    }
+                }
             });
         });
         return Array.from(lootMap.values());
@@ -173,7 +206,7 @@ window.onload = async (e) => {
     function populateChests(title, loot, drops) {
         const lootColumn = document.createElement("div");
         lootColumn.className = "loot-column";
-        lootColumn.innerHTML = `<h3>${title}: ${drops}</h3><div class="scrollable"></div>`;
+        lootColumn.innerHTML = `<h3 title="${(drops / getCurrentRaid().kills * 100).toFixed(2)}%">${title}: ${drops}</h3><div class="scrollable"></div>`;
         const container = lootColumn.querySelector(".scrollable");
 
         loot.forEach(item => item.percentage = ((item.count / drops) * 100).toFixed(2));
