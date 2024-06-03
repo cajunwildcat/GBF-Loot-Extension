@@ -1,5 +1,17 @@
 // background.js
+chrome.storage.session.setAccessLevel({accessLevel: "TRUSTED_AND_UNTRUSTED_CONTEXTS"});
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (tab.url.includes("granbluefantasy.jp")) {
+        chrome.scripting.executeScript({
+            target: {tabId: tabId},
+            world: "MAIN",
+            func: requestIntercept
+        }).then(() => {
+            //console.log('Script injected successfully.');
+        }).catch((error) => {
+            //console.error('Script injection failed:', error);
+        });
+    }
     if (changeInfo.status === 'complete' && tab.url.includes('/#result')) {
         chrome.scripting.executeScript({
             target: { tabId: tabId },
@@ -12,6 +24,21 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         });
     }
 });
+
+const requestIntercept = () => {
+    if (window.XMLHttpRequest.mutated) return;
+    window.XMLHttpRequest.mutated = true;
+    const oldXHRSend = window.XMLHttpRequest.prototype.send;
+    window.XMLHttpRequest.prototype.send = function() {  
+        this.addEventListener("load", function() {
+            if (this.responseURL.includes("start.json")) {
+                const responseBody = JSON.parse(this.response);
+                window.postMessage({command: "ADD_PENDING", quest_id: responseBody.quest_id, raid_id: responseBody.raid_id}, '*');
+            }
+        });
+        return oldXHRSend.apply(this, arguments);
+    };
+};
 
 const injectMainScript = () => {
     const determineRaid = async () => {
@@ -155,9 +182,12 @@ const injectMainScript = () => {
 
     const checkGameLoaded = () => {
         if (window.Game.view.resultJsonData !== undefined) {
-
-            // Perform your actions here
-            determineRaid();
+            const message = {
+                command: "RESOLVE_PENDING",
+                raid_id: window.location.hash.replace("#result_multi/","").replace("#result/",""),
+                loot: window.Game.view.resultJsonData.rewards.reward_list
+            }
+            window.postMessage(message);
 
             return true;
         }

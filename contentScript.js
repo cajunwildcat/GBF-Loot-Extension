@@ -28,6 +28,29 @@ window.addEventListener('message', (event) => {
             case "MESSAGE":
                 console.log(data.message);
             break;
+            case "ADD_PENDING":
+                console.log(data);
+                chrome.storage.session.set({[data.raid_id]: data.quest_id});
+                break;
+            case "RESOLVE_PENDING":
+                console.log(data);
+                chrome.storage.session.get(data.raid_id).then(r=>{
+                    console.log(r);
+                    r = r[data.raid_id];
+                    chrome.storage.session.remove(data.raid_id);
+                    chrome.storage.local.get({[r]: {}}).then(t=>{
+                        t = t[r];
+                        const loot = {};
+                        for (key in data.loot) {
+                            if (data.loot[key].length === undefined) {
+                                loot[key] = Object.values(data.loot[key]).map(itemMap);
+                            }
+                        }
+                        t[data.raid_id] = loot;
+                        chrome.storage.local.set({[r]: t});
+                    });
+                });
+            break;
             case "UPDATE_STORAGE":
                 console.log(data);
                 chrome.storage.local.get({ [data.type === "SOLO"? "SOLO" : data.raid]: defaultLoot }, (result) => {
