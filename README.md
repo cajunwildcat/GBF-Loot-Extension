@@ -3,40 +3,33 @@
 A chrome extension that automatically records the loot you get from raids and quests in Granblue Fantasy.
 
 ## Installation
+
 After cloning, open Chrome and go to the Extensions page. Click `Load unpacked` and select the containing folder.
 
 ## What does what
 
 - `popup.html` and `popup.js` are for handling the extension popup when clicking the extension icon
 - `manifest.json` is used for information about the extension when chrome looks at it
-- `background.js` runs as its name suggests- in the background. Whenever a URL matching the pattern of `/#result` is detected it injects the code in the rest of the file into the page.
+- `background.js` runs as its name suggests- in the background. Whenever a URL matching the pattern of `/#result` is detected it injects the code in the rest of the file into the page. It also handles changing the icon of the extension popup when a results screen is loaded and when the loot data is successfully loaded
  - Importantly, this code is injected and run in the MAIN script world instead of the ISOLATED script world in order to access the JS objects created at runtime by GBF's code. This is done to get the data from the Game object instead of scraping the DOM
-- `contentScript.js` handles messages sent from the code injected by `background.js` to update the extension storage since the injected script can not do it due it being in the MAIN script world instead of ISOLATED.
+- `contentScript.js` handles messages sent from the code injected by `background.js` to update the extension storage since the injected script can not do it due it being in the MAIN script world instead of ISOLATED. It also sends messages to `background.js` to change the extension icon when data is being processed on a result screen
 
 ## Eample Loot
 
 The data in `exampleData.json` is taken from M3 Colossus. To import this data into your own storage to be able to see the data in the popup use the following steps:
 1. Open the extension popup by clicking the icon
 2. Right click anywhere in the popup window and click inspect
-3. In the developer console type `chrome.storage.local.set({"M3 Colossus": <data>});` and replace `<data>` with the JSON object in `exampleData.json`
+3. In the developer console type `chrome.storage.local.set({305601: <data>});` and replace `<data>` with the JSON object in `exampleData.json`
 
 ## Raw Data
-The data for each fight collected so far can be seen by opening the developer console of the extension popup and typing `chrome.storage.local.get(null).then(r=>console.log(r));`. Data for a specific fight only can be seen by replace `null` with a string of the fight's name as it appears in the extension popup navbar.
+
+The data for each fight collected so far can be seen by opening the developer console of the extension popup and expanding the object logged as `raid`.
 
 ## TODO
-- Update fight determination to be based on quest id-session id pairing from summon select screen instead of loot filtering
- - Tethering needs to happen when joining raid, not necessarily opening summon select screen
- - Tethering should have a timeout length for if the fight wasn't properly started or results never checked or resolved properly to avoid orphaned data
- - Add navbar section for normal raids and skippable Impossibles and Enneads
-- Change data storage to store fight data as list of sessions
- - sessions hold their respective loot arrays with items mapped to reduce size
- - popup parsing needs to be overhauled to accomodate this
-- Change extension icon based on work
- - Results page opened but not fully loaded: red background
- - Results page fully loaded and data finished being added: green background
- - Any other URL: gray background
-- JSON exporting
+
 - Renaming for standard fights?
 - Add locally stored version number
  - Checking locally stored version vs expected allows for handling of updateing data to new formats
 - Clean up code
+- Customizable pins at top of each fight
+- Ability to hide categories

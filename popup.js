@@ -9,8 +9,9 @@ const gbfItem = (type, id) => `https://prd-game-a-granbluefantasy.akamaized.net/
 const raidIDs = {
     //BARS
     "PBHL": 301061,
-    "GOHL": 305161,
     "Akasha": 303251,
+    "GOHL": 305161,
+    "UBAHL": 303141,
     "The World": 305571,
     //REVANS
     "Mugen": 305381,
@@ -39,9 +40,73 @@ const raidIDs = {
     "Bennu": 305341,
     "Ra": 305351,
     "Horus": 305361,
-    "Osiris": 305371
+    "Osiris": 305371,
+    //Other Impossibles
+    "Tia Impossible": 300441,
+    "Colo Impossible": 300491,
+    "Levi Impossible": 300511,
+    "Yggy Impossible": 300531,
+    "Lumi Impossible": 300561,
+    "Celeste Impossible": 300581,
+
+    "Shiva": 303151,
+    "Europa": 303161,
+    "Alexiel": 303171,
+    "Grimnir": 303181,
+    "Metatron": 303191,
+    "Avatar": 303221,
+    "Rose Queen": 300471,
+
+    "Tia Malice": 303241,
+    "Levi Malice": 305151,
+    "Phronesis": 305251,
+    "Lumi Malice": 305271,
+    "Anima-Animus": 305291,
+    "Legion Void": 305481,
+
+    "HLQL": 303231,
+    "Faa": 303271,
+    "Four Primarchs": 303291,
+    "Lindwurm": 305171,
+
+    "FaaHL": 303281,
+    "Belial": 305281,
+    "Bubz": 305181,
+
+    "Tia": 300041,
+    "Colo": 300091,
+    "Levi": 300151,
+    "Yggy": 300191,
+    "Adversa": 300221,
+    "Celeste": 300251,
+
+    "Tia Ω": 300051,
+    "Colo Ω": 300101,
+    "Levi Ω": 300161,
+    "Yggy Ω": 300261,
+    "Lumi Ω": 300271,
+    "Celeste Ω": 300281,
+
+    "Athena": 301071,
+    "Grani": 300481,
+    "Baal": 301371,
+    "Garuda": 301381,
+    "Odin": 300461,
+    "Lich": 300551,
+
+    "Grand Order": 301051,
+    "Proto Baha": 300291,
+    "Huanglong": 301671,
+    "Qilin": 301681,
+
+    "Michael": 303101,
+    "Gabriel": 303091,
+    "Uriel": 303111,
+    "Raphael": 303081,
+    "UBAHA": 303131
 };
-const knownIDs = Object.values(raidIDs);
+const knownRaidIDs = Object.values(raidIDs);
+const knownRaidNames = Object.keys(raidIDs);
 
 let currentRaid = {};
 const getCurrentRaid = () => currentRaid;
@@ -50,80 +115,96 @@ window.onload = async (e) => {
     const raidInfo = document.querySelector("#raid-info");
     const topSpan1 = document.querySelector("#top-span1");
     const topSpan2 = document.querySelector("#top-span2");
-    chrome.storage.local.get(null, r=>console.log("local:", r));
-    chrome.storage.session.get(null, r=>console.log("session:", r));
+
+    let raidData;
+    await chrome.storage.local.get(null).then(r => raidData = r);
+    console.log("raids", raidData)
+    let pendingRaids;
+    await chrome.storage.session.get(null).then(r => pendingRaids = r);
+    console.log("pending", pendingRaids);
+
+    //build Solo Fight category
+    const soloFights = Object.keys(raidData).map(i => parseInt(i)).filter(raid => !knownRaidIDs.includes(raid));
+    if (soloFights.length > 0) {
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.innerHTML += `<h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Solo Fights</button></h5>`;
+        const soloFightsDiv = document.createElement("div");
+        soloFightsDiv.className = "w3-hide w3-card";
+        soloFights.forEach(fight => {
+            const navButton = document.createElement("button");
+            navButton.className = "w3-bar-item w3-button raid-button solo-quest";
+            const name = raidData[fight].name? raidData[fight].name : fight;
+            knownRaidIDs.push(fight);
+            knownRaidNames.push(name);
+            raidIDs[name] = fight;
+            navButton.innerHTML = name;
+
+            soloFightsDiv.appendChild(navButton);
+        });
+        sidebar.appendChild(soloFightsDiv);
+    }
 
     //category drop down onclick
     document.querySelectorAll(".raid-category-button").forEach(i => {
         i.onclick = (e) => {
             const div = e.target.parentNode.nextElementSibling;
-            if (div.className.indexOf("w3-show") == -1) {
-                div.className += " w3-show";
-                e.target.className = e.target.className.replace("caret-right", "caret-down");
-            }
-            else {
+            if (div.className.includes("w3-show")) {
                 div.className = div.className.replace(" w3-show", "");
                 e.target.className = e.target.className.replace("caret-down", "caret-right");
+            }
+            else {
+                div.className += " w3-show";
+                e.target.className = e.target.className.replace("caret-right", "caret-down");
             }
         }
     });
 
-    let lastRaid = raidIDs["PBHL"];
+    let lastRaid;
     await chrome.storage.sync.get("lastTab").then(r=>lastRaid=r.lastTab);
+    if (!knownRaidIDs.includes(lastRaid)) lastRaid = raidIDs["PBHL"];
     document.querySelectorAll(".raid-button").forEach((i) => {
         const raidID = raidIDs[i.innerHTML];
         i.onclick = (e) => {
             chrome.storage.sync.set({"lastTab": raidID});
+            currentRaid = raidID;
             raidTitle.innerHTML = i.innerHTML;
-            const raidData = {[raidID] : {}};
             if (e.target.className.includes("solo-quest")) {
                 raidTitle.innerHTML += `<button id="rename-button" class="w3-button fa fa-pencil-square-o fa-5" aria-hidden="true" style="float:right;padding:10px;" title="rename fight"></button>`;
                 document.querySelector("#rename-button").onclick = () => {
                     const name = prompt("Enter a new name for this fight", i.innerHTML);
+                    if (name == null || name == "" || name == " ") return;
                     raidTitle.innerHTML = raidTitle.innerHTML.replace(i.innerHTML, name);
                     i.innerHTML = name;
-                    chrome.storage.local.get("SOLO", (result) => {
-                        result["SOLO"][raidID].name = name;
-                        chrome.storage.local.set(result);
-                    });
+                    raidData[raidID].name = name;
+                    chrome.storage.local.set({[raidID]: raidData[raidID]});
                 };
-                chrome.storage.local.get("SOLO", (result) => buildRaidInfo(result["SOLO"][raidID]));
             }
-            else chrome.storage.local.get(raidData, (result) => buildRaidInfo(result[raidID]));
+            buildRaidInfo({...raidData[raidID],name});
         };
-        if (raidID === lastRaid) lastRaid = i;
+        if (raidID == lastRaid) lastRaid = i;
     });
     lastRaid.dispatchEvent(new Event("click"));
 
-    const download = (e) => {
-        const raid = getCurrentRaid();
-        let csv = "data:text/csv;charset=utf-8,";
-        if (raid.woodChests && raid.woodChests.length > 0) {csv += "Wood Chests\n"; raid.woodChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.silverChests && raid.silverChests.length > 0) {csv += "Silver Chests\n"; raid.silverChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.goldChests && raid.goldChests.length > 0) {csv += "Gold Chests\n"; raid.goldChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.redChests && raid.redChests.length > 0) {csv += "Red Chests\n"; raid.redChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.blueChests && raid.blueChests.length > 0) {csv += "Blue Chests\n"; raid.blueChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.purpleChests && raid.purpleChests.length > 0) {csv += "Purple Chests\n"; raid.purpleChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
-        if (raid.greenChests && raid.greenChests.length > 0) {csv += "Green Chests\n"; raid.greenChests.forEach(i => csv += i.map(c=>`${c.name} x${c.count}`).join(',') + "\n"); csv += "\n";}
+    function download(e) {
+        console.log("raid", getCurrentRaid())
+        console.log("raidData", raidData);
+        let json = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(raidData[getCurrentRaid()]));
 
-        var encodedUri = encodeURI(csv);
         var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "my_data.csv");
+        link.setAttribute("href", json);
+        link.setAttribute("download", "my_data.json");
         document.body.appendChild(link);
         link.click();
     }
 
-
-    const buildRaidInfo = (result) => {
+    function buildRaidInfo (result) {
         raidInfo.querySelector("#no-loot-warning")?.remove();
         raidInfo.querySelector("#button-span")?.remove();
         raidInfo.querySelector("#top-span1").innerHTML = "";
         raidInfo.querySelector("#top-span2").innerHTML = "";
         document.querySelectorAll(".loot-column").forEach(i=>i.remove());
 
-        console.log(result);
-        if (Object.keys(result).length === 0) {
+        if (Object.keys(result).length <= 1) {
             document.querySelectorAll(".loot-column").forEach(c=>c.style.display = "none");
             const noLootWarning = document.createElement("h3");
             noLootWarning.id = "no-loot-warning";
@@ -131,7 +212,6 @@ window.onload = async (e) => {
             raidInfo.appendChild(noLootWarning);
         }
         else {
-            currentRaid = result;
             const chestData = {
                 woodChests: [],
                 silverChests: [],
@@ -150,7 +230,6 @@ window.onload = async (e) => {
                 if (session[13]) chestData.purpleChests.push(session[13]);
                 if (session[16]) chestData.greenChests.push(session[16]);
             });
-            console.log(chestData);
             displayLoot(chestData);
 
             const buttonSpan = document.createElement("span");
@@ -162,20 +241,10 @@ window.onload = async (e) => {
             raidInfo.appendChild(buttonSpan);
             document.querySelector("#download-button").onclick = download;
             document.querySelector("#clear-button").onclick = () => {
-                const raid = getCurrentRaid();
-                if (raid.type !== "SOLO") {
-                    chrome.storage.local.remove(raidTitle.innerHTML);
-                    buildRaidInfo({kills: 0});
-                }
-                else {
-                    chrome.storage.local.get("SOLO").then(async r => {
-                        r = r["SOLO"];
-                        delete r[raid.id];
-                        chrome.storage.local.set({"SOLO": r});
-                        await chrome.storage.sync.set({"lastTab": "PBHL"});
-                        window.location.reload();
-                    });
-                }
+                console.log(getCurrentRaid());
+                chrome.storage.local.remove(`${getCurrentRaid()}`).then(_ => {
+                    window.location.reload();
+                });
             };
         }
     }
@@ -214,7 +283,7 @@ window.onload = async (e) => {
                 lootMap.get(item.id).count++;
                 if (!lootMap.get(item.id).drops[item.count]) lootMap.get(item.id).drops[item.count] = 0;
                 lootMap.get(item.id).drops[item.count]++;
-                if (getCurrentRaid().type = "m3") {
+                if (getCurrentRaid() >= 305591 && getCurrentRaid() <= 305641) {
                     if (item.type == "weapon") {
                         let weapon = topSpan1.querySelector(`#i-${item.id}`);
                         if (!weapon) {
@@ -235,7 +304,7 @@ window.onload = async (e) => {
                             topSpan2.appendChild(anima);
                         }
                         let count = parseInt(anima.innerHTML.substring(anima.innerHTML.lastIndexOf(":")+1));
-                        anima.innerHTML = anima.innerHTML.replace(`:${count}`, `:${count+1}`);
+                        anima.innerHTML = anima.innerHTML.replace(`:${count}`, `:${count+Number(item.count)}`);
                     }
                 }
             });
@@ -246,16 +315,19 @@ window.onload = async (e) => {
     function populateChests(title, loot, drops) {
         const lootColumn = document.createElement("div");
         lootColumn.className = "loot-column";
-        lootColumn.innerHTML = `<h3 title="${(drops / getCurrentRaid().kills * 100).toFixed(2)}%">${title}: ${drops}</h3><div class="scrollable"></div>`;
+        lootColumn.innerHTML = `<h3 title="${(drops / Object.keys(raidData[getCurrentRaid()]).length * 100).toFixed(2)}%">${title}: ${drops}</h3><div class="scrollable"></div>`;
         const container = lootColumn.querySelector(".scrollable");
 
         loot.forEach(item => item.percentage = ((item.count / drops) * 100).toFixed(2));
         loot.sort((a,b)=>b.percentage-a.percentage).forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('item');
+            const img = item.id == 114611? "https://gbf.wiki/images/3/33/Silver_Badge_square.jpg" :
+                        item.id == 114601? "https://gbf.wiki/images/b/b7/Gold_Badge_square.jpg" :
+                        gbfItem(item.type, item.id);
 
             itemDiv.innerHTML = `
-                <div class="item-name" title=${item.count}><img class="item-image" src=${gbfItem(item.type, item.id)}>${Object.keys(item.drops).length > 1? "" : "x"+Object.keys(item.drops)[0]} ${item.percentage}%</div>
+                <div class="item-name" title=${item.count}><img class="item-image" src=${img}>${Object.keys(item.drops).length > 1? "" : "x"+Object.keys(item.drops)[0]} ${item.percentage}%</div>
             `;
             if (Object.keys(item.drops).length > 1) {
                 itemDiv.innerHTML = itemDiv.innerHTML.replace("</div>", ` <i class="fa fa-caret-left" aria-hidden="true"></i></div>`)
