@@ -7,6 +7,10 @@ const swordIcon = "https://gbf.wiki/images/thumb/9/93/Item_kind_icon_001.png/25p
 const gbfItem = (type, id) => `https://prd-game-a-granbluefantasy.akamaized.net/assets_en/img_mid/sp/assets/${type}/s/${id}.jpg`;
 
 const raidIDs = {
+    //HL
+    "SUBHL": 305311,
+    "Hexa": 305491,
+    "Faa Zero": 305581,
     //BARS
     "PBHL": 301061,
     "Akasha": 303251,
@@ -23,8 +27,8 @@ const raidIDs = {
     //OMEGA III
     "Tiamat Aura": 305601,
     "Colossus Ira": 305611,
-    "Yggdrasil Arbos": 305641,
     "Leviathan Mare": 305631,
+    "Yggdrasil Arbos": 305641,
     "Luminiera Credo": 305591,
     "Celeste Ater": 305621,
     //6-DRAGONS
@@ -107,6 +111,50 @@ const raidIDs = {
 };
 const knownRaidIDs = Object.values(raidIDs);
 const knownRaidNames = Object.keys(raidIDs);
+const topPins = {
+    //m3
+    305601: [215,600,601],
+    305611: [215,602,603],
+    305631: [215,604,605],
+    305641: [215,606,607],
+    305591: [215,608,609],
+    305621: [215,610,611],
+    //bars
+    301061: [20004],
+    303251: [20004],
+    305161: [20004],
+    303141: [20004],
+    305571: [215],
+    //revan
+    305381: [215,586],
+    305391: [215,585],
+    305401: [215,587],
+    305411: [215,589],
+    305421: [215,590],
+    305431: [215,589]
+};
+const bottomPins = {
+    //m3
+    305601: [1040516800,1040119200,1040713400],
+    305611: [1040423100,1040317400,1040026100],
+    305631: [1040119700,1040318100,1040916500],
+    305641: [1040026300,1040619000,1040816500],
+    305591: [1040516900,1040219100,1040916200],
+    305621: [1040618800,1040916300,1040119500],
+    //bars
+    301061: [59,79],
+    303251: [],
+    305161: [],
+    303141: [],
+    305571: [],
+    //revan
+    305381: [],
+    305391: [],
+    305401: [],
+    305411: [],
+    305421: [],
+    305431: []
+};
 
 let currentRaid = {};
 const getCurrentRaid = () => currentRaid;
@@ -168,6 +216,11 @@ window.onload = async (e) => {
             chrome.storage.sync.set({"lastTab": raidID});
             currentRaid = raidID;
             raidTitle.innerHTML = i.innerHTML;
+            if (!raidData[raidID]) {
+                raidTitle.title = 0;
+                buildRaidInfo({});
+            }
+            raidTitle.title = Object.keys(raidData[raidID]).length;
             if (e.target.className.includes("solo-quest")) {
                 raidTitle.innerHTML += `<button id="rename-button" class="w3-button fa fa-pencil-square-o fa-5" aria-hidden="true" style="float:right;padding:10px;" title="rename fight"></button>`;
                 document.querySelector("#rename-button").onclick = () => {
@@ -283,30 +336,30 @@ window.onload = async (e) => {
                 lootMap.get(item.id).count++;
                 if (!lootMap.get(item.id).drops[item.count]) lootMap.get(item.id).drops[item.count] = 0;
                 lootMap.get(item.id).drops[item.count]++;
-                if (getCurrentRaid() >= 305591 && getCurrentRaid() <= 305641) {
-                    if (item.type == "weapon") {
-                        let weapon = topSpan1.querySelector(`#i-${item.id}`);
-                        if (!weapon) {
-                            weapon = document.createElement("span");
-                            weapon.id = `i-${item.id}`;
-                            weapon.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
-                            topSpan1.appendChild(weapon);
-                        }
-                        let count = parseInt(weapon.innerHTML.substring(weapon.innerHTML.lastIndexOf(":")+1));
-                        weapon.innerHTML = weapon.innerHTML.replace(`:${count}`, `:${count+1}`);
+
+                if (topPins[getCurrentRaid()] && topPins[getCurrentRaid()].includes(parseInt(item.id))) {
+                    let trackedItem = topSpan1.querySelector(`#i-${item.id}`);
+                    if (!trackedItem) {
+                        trackedItem = document.createElement("span");
+                        trackedItem.id = `i-${item.id}`;
+                        trackedItem.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
+                        topSpan1.appendChild(trackedItem);
                     }
-                    else if (item.id >= 600 && item.id <= 611) {
-                        let anima = topSpan2.querySelector(`#i-${item.id}`);
-                        if (!anima) {
-                            anima = document.createElement("span");
-                            anima.id = `i-${item.id}`;
-                            anima.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
-                            topSpan2.appendChild(anima);
-                        }
-                        let count = parseInt(anima.innerHTML.substring(anima.innerHTML.lastIndexOf(":")+1));
-                        anima.innerHTML = anima.innerHTML.replace(`:${count}`, `:${count+Number(item.count)}`);
-                    }
+                    let count = parseInt(trackedItem.innerHTML.substring(trackedItem.innerHTML.lastIndexOf(":")+1));
+                    trackedItem.innerHTML = trackedItem.innerHTML.replace(`:${count}`, `:${count+Number(item.count)}`);
                 }
+                if (bottomPins[getCurrentRaid()] && bottomPins[getCurrentRaid()].includes(parseInt(item.id))) {
+                    let trackedItem = topSpan2.querySelector(`#i-${item.id}`);
+                    if (!trackedItem) {
+                        trackedItem = document.createElement("span");
+                        trackedItem.id = `i-${item.id}`;
+                        trackedItem.innerHTML = `<img class="item-image" src=${gbfItem(item.type, item.id)}>:0`;
+                        topSpan2.appendChild(trackedItem);
+                    }
+                    let count = parseInt(trackedItem.innerHTML.substring(trackedItem.innerHTML.lastIndexOf(":")+1));
+                    trackedItem.innerHTML = trackedItem.innerHTML.replace(`:${count}`, `:${count+Number(item.count)}`);
+                }
+                
             });
         });
         return Array.from(lootMap.values());
@@ -315,27 +368,27 @@ window.onload = async (e) => {
     function populateChests(title, loot, drops) {
         const lootColumn = document.createElement("div");
         lootColumn.className = "loot-column";
-        lootColumn.innerHTML = `<h3 title="${(drops / Object.keys(raidData[getCurrentRaid()]).length * 100).toFixed(2)}%">${title}: ${drops}</h3><div class="scrollable"></div>`;
+        lootColumn.innerHTML = `<h3 title="${(drops / (Object.keys(raidData[getCurrentRaid()]).length - (raidData[getCurrentRaid()].name? 1 : 0)) * 100).toFixed(2)}%">${title}: ${drops}</h3><div class="scrollable"></div>`;
         const container = lootColumn.querySelector(".scrollable");
 
         loot.forEach(item => item.percentage = ((item.count / drops) * 100).toFixed(2));
         loot.sort((a,b)=>b.percentage-a.percentage).forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('item');
-            const img = item.id == 114611? "https://gbf.wiki/images/3/33/Silver_Badge_square.jpg" :
-                        item.id == 114601? "https://gbf.wiki/images/b/b7/Gold_Badge_square.jpg" :
+            const img = item.name == "Badge" && `${item.id}`.slice(-2,-1) == "1"? "https://gbf.wiki/images/3/33/Silver_Badge_square.jpg" :
+                        item.name == "Badge" && `${item.id}`.slice(-2,-1) == "0"? "https://gbf.wiki/images/b/b7/Gold_Badge_square.jpg" :
                         gbfItem(item.type, item.id);
 
             itemDiv.innerHTML = `
-                <div class="item-name" title=${item.count}><img class="item-image" src=${img}>${Object.keys(item.drops).length > 1? "" : "x"+Object.keys(item.drops)[0]} ${item.percentage}%</div>
+                <div class="item-name"><img class="item-image" src=${img}> x${Object.values(item.drops).reduce((sum,d,i)=>sum+d*Object.keys(item.drops)[i])} - ${item.percentage}%</div>
             `;
             if (Object.keys(item.drops).length > 1) {
                 itemDiv.innerHTML = itemDiv.innerHTML.replace("</div>", ` <i class="fa fa-caret-left" aria-hidden="true"></i></div>`)
                 itemDiv.innerHTML += `<div class="item-details w3-hide">
-                    ${Object.keys(item.drops).map(drop => `<div>x${drop} ${(item.drops[drop] / drops * 100).toFixed(2)}%</div>`).join('')}
+                    ${Object.keys(item.drops).map(drop => `<div style="white-space-collapse:preserve;">x${drop}   ${item.drops[drop]} @ ${(item.drops[drop] / drops * 100).toFixed(2)}%</div>`).join('')}
                     </div>`
                 itemDiv.onclick = (e) => {
-                    const div = e.target.className.includes("caret")? e.target.parentNode.nextElementSibling : e.target.nextElementSibling;
+                    const div = e.target.className.includes("caret") || e.target.className.includes("item-image")? e.target.parentNode.nextElementSibling : e.target.nextElementSibling;
                     if (div.className.indexOf("w3-show") == -1) {
                         div.className += " w3-show";
                         div.previousElementSibling.lastElementChild.className = div.previousElementSibling.lastElementChild.className.replace("caret-left", "caret-down");

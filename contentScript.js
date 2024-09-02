@@ -13,7 +13,6 @@ window.addEventListener('message', (event) => {
     const data = event.data;
     
     if (data.command) {
-        console.log(data);
         switch (data.command) {
             case "MESSAGE":
                 console.log(data.message);
@@ -35,7 +34,7 @@ window.addEventListener('message', (event) => {
                         t = t[r];
                         const loot = {};
                         for (key in data.loot) {
-                            if (data.loot[key].length === undefined) {
+                            if (Object.keys(data.loot[key]).length > 0) {
                                 loot[key] = Object.values(data.loot[key]).map(itemMap);
                             }
                         }
@@ -46,7 +45,6 @@ window.addEventListener('message', (event) => {
                 });
             break;
             case "UPDATE_ICON":
-                console.log(data.icon);
                 (async () => {
                     chrome.runtime.sendMessage(data)
                 })()

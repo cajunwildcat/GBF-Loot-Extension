@@ -25,6 +25,7 @@
             direction: rtl;
             max-height: 200px;
             overflow-y: auto;
+            width:225px;
         }
         .scrollable > * {
             direction: ltr;
@@ -35,6 +36,7 @@
         }
         .item-details {
             display: none;
+            margin-left:6px;
         }
         .item-image {
             width: 35px;
@@ -68,6 +70,13 @@
 </head>
 <body>
     <nav class="w3-sidebar w3-bar-block sidebar" style="width:140px">
+        <!--HL-->
+        <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> High Level</button></h5>
+        <div class="w3-hide w3-card">
+            <button class="w3-bar-item w3-button raid-button">SUBHL</button>
+            <button class="w3-bar-item w3-button raid-button">Hexa</button>
+            <button class="w3-bar-item w3-button raid-button">Faa Zero</button>
+        </div>
         <!--Bar Raids-->
         <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> Bar Raids</button></h5>
         <div class="w3-hide w3-card">
