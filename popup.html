@@ -64,11 +64,28 @@
         .w3-bar-item {
             padding-right: 0px !important;
         }
+        #pin-item-menu {
+            width:100px;
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .pin-item-menu-button {
+            width:100%;
+            font-size:0.8em;
+        }
     </style>
     <title>Document</title>
     <script src="popup.js"></script>
 </head>
 <body>
+    <div id="pin-item-menu">
+        <button class="pin-item-menu-button"></button>
+        <button class="pin-item-menu-button"></button>
+    </div>
     <nav class="w3-sidebar w3-bar-block sidebar" style="width:140px">
         <!--HL-->
         <h5><button class="w3-bar-item w3-button w3-block w3-left-align raid-category-button fa fa-caret-right"> High Level</button></h5>
