@@ -38,7 +38,7 @@ window.addEventListener('message', (event) => {
                                 loot[key] = Object.values(data.loot[key]).map(itemMap);
                             }
                         }
-                        if (Object.keys(loot).length == 0) return;
+                        //if (Object.keys(loot).length == 0) return;
                         t[data.raid_id] = loot;
                         chrome.storage.local.set({[r]: t});
                     });

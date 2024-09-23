@@ -25,11 +25,28 @@ The data in `exampleData.json` is taken from M3 Colossus. To import this data in
 
 The data for each fight collected so far can be seen by opening the developer console of the extension popup and expanding the object logged as `raid`.
 
-## TODO
+## Planned Features
+- High Priority
+ - Highlight "unread" fights in sidebar
+ - Ability to hide categories
+- Lower Priority
+ - Add external event fight IDs that are fetched on browser launch
+  - Don't need to update extension for every event, just event ID file in git repo?
+  - Refresh interval for people who don't close browser?
+ - Clean up code
+ - Ability to link to custom CSS file for user controlled styling
 
-- Renaming for standard fights?
-- Add locally stored version number
- - Checking locally stored version vs expected allows for handling of updateing data to new formats
-- Clean up code
-- Customizable pins at top of each fight
-- Ability to hide categories
+Update Version 1.1 (23/09/2024):
+- Changed the way item counts and percentages are displayed
+ - You no longer need to hover over the item to see total drops
+ - Total kills of a fight are shown at the top instead of having to self-calculate based on a chest's drop rate
+ - The exact format is not finalzied and subject to change in future updates
+- You can now pin items per fight
+ - Right click an item to get options to pin to 1 of 2 rows at the top of the fight info
+ - Items can be unpinned from the pin rows, or from the item entires in the chests
+ - Pinned item count shows the total number of items across all chest types
+- All fights can be renamed, not just Solo Fights
+- Certain Solo Fights are pre-filled out in categories (Arcarum, Special Quests, Co-op Quests, and Free Quests for now)
+ - Fights in these categories will not show up until you finish them once, similar to old Solo Fight behavior
+ - Certain event quests are planned to be added in similar categories in the future
+- Impossible 8★ and above raids are not longer in Solo Fights; they have their own High Level category now

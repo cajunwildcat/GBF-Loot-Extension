@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "GBF Loot Extension",
-    "version": "1.0",
+    "version": "1.1",
     "description": "A loot tracker for GBF.",
     "permissions": [
         "activeTab",
