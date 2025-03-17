@@ -11,18 +11,18 @@ const itemMap = item => {
 window.addEventListener('message', (event) => {
     if (event.source !== window) return;
     const data = event.data;
-    
+
     if (data.command) {
         switch (data.command) {
             case "MESSAGE":
                 console.log(data.message);
-            break;
+                break;
             case "ADD_PENDING":
-                chrome.storage.session.set({[data.raid_id]: data.quest_id});
+                chrome.storage.session.set({ [data.raid_id]: data.quest_id });
                 break;
             case "RESOLVE_PENDING":
                 console.log(data);
-                chrome.storage.session.get(data.raid_id).then(r=>{
+                chrome.storage.session.get(data.raid_id).then(r => {
                     console.log(r);
                     if (Object.keys(r).length === 0) {
                         console.log("Raid ID could not be found! Either it was already processed or the results page URL format changed.")
@@ -30,7 +30,7 @@ window.addEventListener('message', (event) => {
                     }
                     r = r[data.raid_id];
                     chrome.storage.session.remove(data.raid_id);
-                    chrome.storage.local.get({[r]: {}}).then(t=>{
+                    chrome.storage.local.get({ [r]: {} }).then(t => {
                         t = t[r];
                         const loot = {};
                         for (key in data.loot) {
@@ -38,17 +38,23 @@ window.addEventListener('message', (event) => {
                                 loot[key] = Object.values(data.loot[key]).map(itemMap);
                             }
                         }
-                        //if (Object.keys(loot).length == 0) return;
+                        data.artifacts.forEach((a, i) => {
+                            if (!loot[90]) loot[90] = [];
+                            loot[90].push({
+                                name: a.name,
+                                details: a.artifact_param
+                            });
+                        });
                         t[data.raid_id] = loot;
-                        chrome.storage.local.set({[r]: t});
+                        chrome.storage.local.set({ [r]: t });
                     });
                 });
-            break;
+                break;
             case "UPDATE_ICON":
                 (async () => {
                     chrome.runtime.sendMessage(data)
                 })()
-            break;
+                break;
         }
     }
 });
