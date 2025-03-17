@@ -42,7 +42,6 @@ chrome.runtime.onMessage.addListener(
 const requestIntercept = () => {
 	if (window.XMLHttpRequest.mutated) return;
 	window.XMLHttpRequest.mutated = true;
-	console.log("Intercepting XHR requests");
 	const oldXHRSend = window.XMLHttpRequest.prototype.send;
 	window.XMLHttpRequest.prototype.send = function() {  
 		this.addEventListener("load", function() {
