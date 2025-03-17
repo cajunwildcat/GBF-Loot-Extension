@@ -36,6 +36,10 @@ The data for each fight collected so far can be seen by opening the developer co
  - Clean up code
  - Ability to link to custom CSS file for user controlled styling
 
+Update Version 1.2 (16/03/2025):
+- Added basic tracking support for Artifacts
+ - More detailed info will be available at a later date
+
 Update Version 1.1 (23/09/2024):
 - Changed the way item counts and percentages are displayed
  - You no longer need to hover over the item to see total drops
