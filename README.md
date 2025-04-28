@@ -36,6 +36,9 @@ The data for each fight collected so far can be seen by opening the developer co
  - Clean up code
  - Ability to link to custom CSS file for user controlled styling
 
+Update Version 1.21 (16/03/2025):
+ - Fixed a bug with the popup related to artifacts
+
 Update Version 1.2 (16/03/2025):
 - Added basic tracking support for Artifacts
  - More detailed info will be available at a later date
