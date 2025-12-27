@@ -36,6 +36,13 @@ The data for each fight collected so far can be seen by opening the developer co
  - Clean up code
  - Ability to link to custom CSS file for user controlled styling
 
+Update Version 1.3 (27/12/2025):
+ - Added Mastery Trial category
+ - Added Verboten category
+ - Added Versusia to HL category
+ - Moved The World from Bar Raid category to 7* category
+ - Increased pop-up height
+
 Update Version 1.21 (16/03/2025):
  - Fixed a bug with the popup related to artifacts
 
