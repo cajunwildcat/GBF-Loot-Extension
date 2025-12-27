@@ -27,14 +27,14 @@ The data for each fight collected so far can be seen by opening the developer co
 
 ## Planned Features
 - High Priority
- - Highlight "unread" fights in sidebar
- - Ability to hide categories
+  - Highlight "unread" fights in sidebar
+  - Ability to hide categories
 - Lower Priority
- - Add external event fight IDs that are fetched on browser launch
-  - Don't need to update extension for every event, just event ID file in git repo?
-  - Refresh interval for people who don't close browser?
- - Clean up code
- - Ability to link to custom CSS file for user controlled styling
+  - Add external event fight IDs that are fetched on browser launch
+    - Wouldn't need to update extension for every event, just event ID file in git repo?
+    - Refresh interval for people who don't close browser?
+  - Clean up code
+  - Ability to link to custom CSS file for user controlled styling
 
 Update Version 1.3 (27/12/2025):
  - Added Mastery Trial category
