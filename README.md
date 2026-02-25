@@ -36,6 +36,9 @@ The data for each fight collected so far can be seen by opening the developer co
   - Clean up code
   - Ability to link to custom CSS file for user controlled styling
 
+Update Version 1.31 (25/02/2026):
+ - Added new Verboten raids to respective category
+
 Update Version 1.3 (27/12/2025):
  - Added Mastery Trial category
  - Added Verboten category
