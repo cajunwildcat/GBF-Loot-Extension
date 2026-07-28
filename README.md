@@ -14,7 +14,7 @@ After cloning, open Chrome and go to the Extensions page. Click `Load unpacked` 
  - Importantly, this code is injected and run in the MAIN script world instead of the ISOLATED script world in order to access the JS objects created at runtime by GBF's code. This is done to get the data from the Game object instead of scraping the DOM
 - `contentScript.js` handles messages sent from the code injected by `background.js` to update the extension storage since the injected script can not do it due it being in the MAIN script world instead of ISOLATED. It also sends messages to `background.js` to change the extension icon when data is being processed on a result screen
 
-## Eample Loot
+## Example Loot
 
 The data in `exampleData.json` is taken from M3 Colossus. To import this data into your own storage to be able to see the data in the popup use the following steps:
 1. Open the extension popup by clicking the icon
